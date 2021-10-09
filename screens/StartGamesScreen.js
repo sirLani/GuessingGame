@@ -12,6 +12,7 @@ import Card from "../components/card";
 import Colors from "../constants/colors";
 import Input from "../components/input.js";
 import NumberContainer from "../components/NUmberContainer";
+import CustomButton from "../components/customButton";
 
 const StartGamesScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -53,10 +54,9 @@ const StartGamesScreen = (props) => {
       <Card style={styles.summaryContainer}>
         <Text>You selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
-          title="Start Game"
-          onPress={() => props.onstartGame(selectedNumber)}
-        />
+        <CustomButton onPress={() => props.onstartGame(selectedNumber)}>
+          Start Game
+        </CustomButton>
       </Card>
     );
   }
@@ -82,20 +82,13 @@ const StartGamesScreen = (props) => {
             value={enteredValue}
           />
           <View style={styles.buttonContainer}>
-            <View style={styles.button}>
-              <Button
-                title="Reset"
-                color={Colors.primary}
-                onPress={resetInputHandle}
-              />
-            </View>
-            <View style={styles.button}>
-              <Button
-                title="Confirm"
-                color={Colors.accent}
-                onPress={confirmInputHandle}
-              />
-            </View>
+            <CustomButton styles={styles.button} onPress={resetInputHandle}>
+              Reset
+            </CustomButton>
+
+            <CustomButton styles={styles.button} onPress={confirmInputHandle}>
+              Confirm
+            </CustomButton>
           </View>
         </Card>
         {confirmedOutput}
@@ -114,6 +107,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginVertical: 10,
+    fontFamily: "OpenSans-Bold",
   },
 
   inputContainer: {
@@ -126,11 +120,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
     marginTop: 15,
   },
   button: {
-    width: 100,
+    width: 115,
   },
 
   input: {
